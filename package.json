@@ -1,25 +1,25 @@
 {
-  "name": "afoscholars",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ex0dot/ethereum-nft-marketplace-template.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ex0dot/ethereum-nft-marketplace-template/issues"
-  },
-  "homepage": "https://github.com/ex0dot/ethereum-nft-marketplace-template#readme",
-  "description": "",
-  "dependencies": {
-    "@dicebear/avatars": "^4.10.2",
-    "@dicebear/open-peeps": "^4.10.2",
-    "express": "^4.18.1",
-    "nuronjs": "^0.1.0"
-  }
+	"name": "afoscholars",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/e-rick/cell.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/e-rick/cell/issues"
+	},
+	"homepage": "https://github.com/e-rick/cell#readme",
+	"description": "",
+	"dependencies": {
+		"@dicebear/avatars": "^4.10.2",
+		"@dicebear/open-peeps": "^4.10.2",
+		"express": "^4.18.1",
+		"nuronjs": "^0.1.0"
+	}
 }
