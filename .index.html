@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.1-rc.0/web3.min.js"></script>
+		<script src="https://unpkg.com/c0js/dist/c0.js"></script>
+	</head>
+	<body>
+		<form>
+			<input type="text" id="seed" />
+			<input type="submit" value="create" />
+		</form>
+		<div id="svg"></div>
+		<div id="tokens"></div>
+		<script>
+			document.querySelector("form").addEventListener("submit", async (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				// initialize c0 with the browser web3 instance
+				const web3 = new Web3(window.ethereum);
+				const c0 = new C0();
+				await c0.init({web3: web3});
+				// call "POST /create" endpoint to generate a token
+				let response = await fetch("/create", {
+					method: "POST",
+					headers: {"Content-Type": "application/json"},
+					body: JSON.stringify({seed: document.querySelector("#seed").value}),
+				}).then((res) => {
+					return res.json();
+				});
+				let svg = response.svg;
+				let token = response.token;
+				document.querySelector("#svg").innerHTML = svg;
+				// create a mint transaction with one token
+				let tx = await c0.token.mint([token]);
+				let address = token.domain.verifyingContract;
+				let tokenId = token.body.id;
+				if (token.domain.chainId == 4) {
+					// rinkeby
+					document.querySelector("#tokens").innerHTML = `<div class='markets'>
+  <a href="https://testnets.opensea.io/assets/${address}/${tokenId}">Opensea</a>
+  <a href="https://rinkeby.rarible.com/token/${address}:${tokenId}">Rarible</a>
+</div>`;
+				} else {
+					// mainnet
+					document.querySelector("#tokens").innerHTML = `<div class='markets'>
+  <a href="https://opensea.io/assets/${address}/${tokenId}">Opensea</a>
+  <a href="https://rarible.com/token/${address}:${tokenId}">Rarible</a>
+</div>`;
+				}
+			});
+		</script>
+	</body>
+</html>
